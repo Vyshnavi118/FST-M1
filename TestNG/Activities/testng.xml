@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="FSTTests" thread-count="4" parallel="classes">
+
+    <parameter name="username" value="admin"/>
+    <parameter name="password" value="password"/>
+
+    <test name="FSTActivities">
+        <classes>
+            <class name="testng.Activity1"/>
+            <class name="testng.Activity2"/>
+            <class name="testng.Activity3"/>
+            <class name="testng.Activity4"/>
+            <class name="testng.Activity5"/>
+            <class name="testng.Activity6"/>
+            <class name="testng.Activity7"/>
+        </classes>
+    </test>
+
+</suite>
