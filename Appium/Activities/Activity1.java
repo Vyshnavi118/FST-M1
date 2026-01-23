@@ -9,9 +9,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 public class Activity1 {
 
@@ -21,21 +21,12 @@ public class Activity1 {
     public void setUp() throws MalformedURLException, URISyntaxException {
 
         UiAutomator2Options options = new UiAutomator2Options();
-
-        // Platform details
-        options.setPlatformName("Android");
+        options.setPlatformName("android");
         options.setAutomationName("UiAutomator2");
+        options.setApp("path/to/calculator.apk");
+        options.noReset();
 
-        // Emulator (IMPORTANT)
-        options.setUdid("emulator-5556");
-
-        // Calculator app (default Android)
-        options.setAppPackage("com.android.calculator2");
-        options.setAppActivity(".Calculator");
-
-        // Appium Server URL
-        URL serverURL = new URI("http://127.0.0.1:4723").toURL();
-
+        URL serverURL = new URI("http://localhost:4723").toURL();
         driver = new AndroidDriver(serverURL, options);
     }
 
@@ -47,16 +38,12 @@ public class Activity1 {
         driver.findElement(AppiumBy.id("digit_8")).click();
         driver.findElement(AppiumBy.accessibilityId("equals")).click();
 
-        String result =
-                driver.findElement(AppiumBy.id("result_final")).getText();
-
+        String result = driver.findElement(AppiumBy.id("result_final")).getText();
         Assert.assertEquals(result, "40");
     }
 
     @AfterClass
     public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        driver.quit();
     }
 }
